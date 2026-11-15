@@ -12,7 +12,7 @@ if [ -d isolinux ]; then
   cp "$SPLASH" isolinux/splash.png
   sed -i 's/^timeout 0/timeout 30/' isolinux/isolinux.cfg
   sed -i 's/menu title Boot menu/menu title Magrathea OS/' isolinux/menu.cfg
-  sed -i 's/#76a1d0ff/#6f8a40ff/g' isolinux/stdmenu.cfg
+  sed -i 's/#76a1d0ff/#ff6f8a40/g' isolinux/stdmenu.cfg
   sed -i 's/Live system/Magrathea OS/g' isolinux/live.cfg
 fi
 
