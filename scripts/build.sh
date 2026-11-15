@@ -14,7 +14,6 @@ lb config \
   --parent-mirror-bootstrap http://deb.debian.org/debian/ \
   --parent-mirror-chroot http://deb.debian.org/debian/ \
   --parent-mirror-binary http://deb.debian.org/debian/ \
-  --debootstrap-options "--variant=minbase --include=gnupg,ca-certificates" \
   --security true \
   --parent-mirror-chroot-security http://security.debian.org/debian-security/ \
   --parent-mirror-binary-security http://security.debian.org/debian-security/ \
