@@ -7,6 +7,18 @@ sh scripts/fetch-app.sh
 
 lb config \
   --distribution trixie \
+  --parent-distribution trixie \
+  --mirror-bootstrap http://deb.debian.org/debian/ \
+  --mirror-chroot http://deb.debian.org/debian/ \
+  --mirror-binary http://deb.debian.org/debian/ \
+  --parent-mirror-bootstrap http://deb.debian.org/debian/ \
+  --parent-mirror-chroot http://deb.debian.org/debian/ \
+  --parent-mirror-binary http://deb.debian.org/debian/ \
+  --security true \
+  --parent-mirror-chroot-security http://security.debian.org/debian-security/ \
+  --parent-mirror-binary-security http://security.debian.org/debian-security/ \
+  --mirror-chroot-security http://security.debian.org/debian-security/ \
+  --mirror-binary-security http://security.debian.org/debian-security/ \
   --architectures amd64 \
   --archive-areas "main contrib non-free non-free-firmware" \
   --binary-images iso-hybrid \

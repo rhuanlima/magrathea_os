@@ -12,18 +12,25 @@ jobs:
   iso:
     runs-on: ubuntu-24.04
     timeout-minutes: 90
+    # Debian de verdade: o live-build do Ubuntu usa os espelhos do Ubuntu e é mais antigo.
+    container:
+      image: debian:trixie
+      options: --privileged
     steps:
+      - name: Instalar git (necessário ao checkout)
+        run: apt-get update && apt-get install -y git ca-certificates
+
       - uses: actions/checkout@v4
 
       - name: Instalar ferramentas de build
         run: |
-          sudo apt-get update
-          sudo apt-get install -y live-build debootstrap debian-archive-keyring xz-utils
+          apt-get update
+          apt-get install -y live-build debootstrap debian-archive-keyring gnupg xz-utils gh
 
       - name: Gerar a ISO
         env:
           GH_TOKEN: ${{ github.token }}
-        run: sudo --preserve-env=GH_TOKEN ./scripts/build.sh
+        run: ./scripts/build.sh
 
       - name: Guardar a ISO como artefato
         uses: actions/upload-artifact@v4
