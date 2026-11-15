@@ -22,7 +22,7 @@ lb config \
   --architectures amd64 \
   --archive-areas "main contrib non-free non-free-firmware" \
   --binary-images iso-hybrid \
-  --bootappend-live "boot=live components quiet splash=0" \
+  --bootappend-live "boot=live components quiet splash=0 hostname=magrathea" \
   --debian-installer none \
   --apt-recommends false \
   --apt-indices false \
