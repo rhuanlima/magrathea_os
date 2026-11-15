@@ -1,0 +1,27 @@
+#!/bin/sh
+# Marca do Magrathea OS no menu de boot (BIOS/syslinux e EFI/GRUB) e tempo limite.
+# Roda no estágio "binary", depois de o live-build gerar os menus.
+# Tolerante de propósito: se um arquivo não existir, não derruba o build.
+
+[ -d isolinux ] || { [ -d binary/isolinux ] && cd binary; }
+
+SPLASH=magrathea/splash.png
+
+# BIOS (syslinux/isolinux): tempo em décimos de segundo (30 = 3 s)
+if [ -d isolinux ]; then
+  cp "$SPLASH" isolinux/splash.png
+  sed -i 's/^timeout 0/timeout 30/' isolinux/isolinux.cfg
+  sed -i 's/menu title Boot menu/menu title Magrathea OS/' isolinux/menu.cfg
+  sed -i 's/#76a1d0ff/#ff6f8a40/g' isolinux/stdmenu.cfg
+  sed -i 's/Live system/Magrathea OS/g' isolinux/live.cfg
+fi
+
+# EFI (GRUB) — é o caminho de boot dos Macs
+if [ -d boot/grub ]; then
+  cp "$SPLASH" boot/grub/splash.png
+  echo 'set timeout=3' >> boot/grub/config.cfg
+  sed -i 's/Live system/Magrathea OS/g' boot/grub/grub.cfg
+fi
+
+rm -rf magrathea
+exit 0
