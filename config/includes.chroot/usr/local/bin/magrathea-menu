@@ -1,0 +1,18 @@
+#!/bin/sh
+# Menu mínimo em texto, mostrado quando o app é fechado.
+while true; do
+  clear
+  echo "Magrathea OS"
+  echo
+  echo "  1) Voltar a escrever"
+  echo "  2) Reiniciar"
+  echo "  3) Desligar"
+  echo
+  printf "> "
+  read -r op
+  case "$op" in
+    1) exec /usr/local/bin/magrathea-session ;;
+    2) systemctl reboot ;;
+    3) systemctl poweroff ;;
+  esac
+done

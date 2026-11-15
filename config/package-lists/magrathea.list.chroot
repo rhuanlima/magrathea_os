@@ -1,0 +1,39 @@
+# Mínimo para iniciar o sistema e abrir o Magrathea Writer.
+# Regra: nada de ambiente de desktop, gerenciador de login, som, impressão
+# ou serviços que não sejam necessários para escrever.
+
+# Sistema
+linux-image-amd64
+live-boot
+live-config
+live-config-systemd
+systemd-sysv
+libpam-systemd
+dbus
+udev
+kmod
+
+# Sessão gráfica mínima (Wayland, um único app em tela cheia)
+cage
+xwayland
+libgl1-mesa-dri
+mesa-vulkan-drivers
+fonts-dejavu-core
+
+# Dependências de execução do Tauri 2 (o .deb do app não as declara)
+libwebkit2gtk-4.1-0
+libgtk-3-0
+libayatana-appindicator3-1
+
+# Entrada, mídia removível e importação de arquivos (pendrive, cartão SD)
+udisks2
+exfatprogs
+ntfs-3g
+dosfstools
+
+# Rede só quando necessário (wpasupplicant para Wi-Fi), sem NetworkManager completo
+iwd
+
+# Economia de energia e memória
+tlp
+zram-tools

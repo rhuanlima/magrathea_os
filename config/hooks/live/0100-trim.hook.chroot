@@ -1,0 +1,11 @@
+#!/bin/sh
+# Reduz o tamanho da imagem: remove documentação, páginas de manual e locales não usados.
+# Os arquivos `copyright` ficam: a licença de cada pacote precisa acompanhar a ISO.
+set -e
+find /usr/share/doc -type f ! -name copyright -delete
+find /usr/share/doc -type l -delete
+find /usr/share/doc -type d -empty -delete
+rm -rf /usr/share/man/* /usr/share/info/*
+find /usr/share/locale -mindepth 1 -maxdepth 1 ! -name 'pt*' ! -name 'en*' -exec rm -rf {} +
+# Serviços desnecessários para uma máquina de escrita
+systemctl disable cups.service bluetooth.service ModemManager.service 2>/dev/null || true
