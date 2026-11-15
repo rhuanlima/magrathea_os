@@ -7,6 +7,9 @@ linux-image-amd64
 live-boot
 live-config
 live-config-systemd
+# Sem isto o live-config não cria o usuário (é só 'Recommends' dele, e os
+# recommends estão desligados): o login automático falha com "Authentication failure".
+user-setup
 systemd-sysv
 libpam-systemd
 dbus
