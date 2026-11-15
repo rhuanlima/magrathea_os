@@ -15,6 +15,10 @@ lb config \
   --parent-mirror-chroot http://deb.debian.org/debian/ \
   --parent-mirror-binary http://deb.debian.org/debian/ \
   --security true \
+  --parent-mirror-chroot-security http://security.debian.org/debian-security/ \
+  --parent-mirror-binary-security http://security.debian.org/debian-security/ \
+  --mirror-chroot-security http://security.debian.org/debian-security/ \
+  --mirror-binary-security http://security.debian.org/debian-security/ \
   --architectures amd64 \
   --archive-areas "main contrib non-free non-free-firmware" \
   --binary-images iso-hybrid \
