@@ -22,6 +22,8 @@ xwayland
 libgl1-mesa-dri
 mesa-vulkan-drivers
 fonts-dejavu-core
+# O app usa emoji nos ícones; sem esta fonte aparecem como "≡".
+fonts-noto-color-emoji
 
 # Dependências de execução do Tauri 2 (o .deb do app não as declara)
 libwebkit2gtk-4.1-0
