@@ -1,0 +1,45 @@
+name: Build ISO
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['os-*']
+
+permissions:
+  contents: write
+
+jobs:
+  iso:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar ferramentas de build
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y live-build debootstrap debian-archive-keyring xz-utils
+
+      - name: Gerar a ISO
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: sudo --preserve-env=GH_TOKEN ./scripts/build.sh
+
+      - name: Guardar a ISO como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: magrathea-os-iso
+          path: |
+            live-image-amd64.hybrid.iso
+            live-image-amd64.hybrid.iso.sha256
+
+      - name: Publicar release (tags os-*)
+        if: startsWith(github.ref, 'refs/tags/os-')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            live-image-amd64.hybrid.iso live-image-amd64.hybrid.iso.sha256 \
+            --title "Magrathea OS ${GITHUB_REF_NAME#os-}" \
+            --notes "ISO com o Magrathea Writer $(cat app-version.txt). Protótipo: ainda não testado em hardware." \
+            --prerelease
