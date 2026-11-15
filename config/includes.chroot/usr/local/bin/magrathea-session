@@ -1,0 +1,11 @@
+#!/bin/sh
+# Sessão sem distração: um compositor Wayland que mostra só o Magrathea Writer.
+# Se o app fechar, volta ao menu (desligar / reiniciar) em vez de a um desktop.
+
+# GPUs antigas costumam travar com composição acelerada do WebKitGTK.
+export WEBKIT_DISABLE_COMPOSITING_MODE=1
+export XDG_SESSION_TYPE=wayland
+
+cage -s -- magrathea-writer
+
+exec /usr/local/bin/magrathea-menu

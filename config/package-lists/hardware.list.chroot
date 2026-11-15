@@ -1,0 +1,14 @@
+# Firmware e drivers para notebooks antigos. Pesam na ISO, não na memória:
+# o kernel só carrega o que o hardware precisa.
+firmware-linux-free
+firmware-misc-nonfree
+firmware-iwlwifi
+firmware-realtek
+firmware-atheros
+firmware-brcm80211
+# Wi-Fi Broadcom antigo (MacBook Air 2012 e similares)
+broadcom-sta-dkms
+linux-headers-amd64
+dkms
+# Ventoinha de MacBook
+mbpfan

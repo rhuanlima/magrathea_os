@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+
+# live-build output
+/build/
+/*.iso
+/*.img
+/*.sha256
+/cache/
+/chroot/
+/binary/
+/.build/
+/auto/
+/live-image-*
+/binary.*
+/chroot.*
+
+# .deb do app é baixado no build, nunca versionado
+/config/packages.chroot/*.deb
+
+# arquivos gerados por `lb config`
+/config/binary
+/config/bootstrap
+/config/chroot
+/config/common
+/config/source
+/config/build
